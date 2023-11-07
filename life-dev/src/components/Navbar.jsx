@@ -1,30 +1,38 @@
-import { NavLink } from 'react-router-dom'
-import styles from './Navbar.module.css'
+import React from "react"
+import { NavLink } from "react-router-dom"
+import styles from "./Navbar.module.css"
 
 const Navbar = () => {
   return (
     <>
       <nav className={styles.navbar}>
-        <NavLink to="/">
-          Life<span>Dev</span>
+        <NavLink to="/" className={styles.brand}>
+          Life <span>Dev</span>
         </NavLink>
         <ul className={styles.links_list}>
           <li>
-            <NavLink className={({ isActive }) => (isActive ? styles.active : null)} to="/">Home</NavLink>
+            <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : null)}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => (isActive ? styles.active : null)} to="/login">Login</NavLink>
+            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : null)}>
+              Login
+            </NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => (isActive ? styles.active : null)} to="/register">Cadastrar</NavLink>
+            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : null)}>
+              Cadastrar
+            </NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => (isActive ? styles.active : null)} to="/about">About</NavLink>
+            <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : null)}>
+              About
+            </NavLink>
           </li>
         </ul>
       </nav>
     </>
-
   )
 }
 
