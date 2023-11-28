@@ -25,7 +25,7 @@ const Register = () => {
     }
 
     const res = await createUser(user)
-    console.log(res)
+    res && console.log(res)
   }
 
   useEffect(() => {
@@ -82,7 +82,9 @@ const Register = () => {
           required
           />
         </label>
-        <button className='btn'>Cadastrar</button>
+        {!loading && <button className='btn' type='submit'>Cadastrar</button>}
+        {loading && <button className='btn'>Aguarde...</button>}
+        {error && <p className='error'>{error}</p>}
       </form>
     </div>
   )

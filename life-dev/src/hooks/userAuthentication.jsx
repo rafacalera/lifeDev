@@ -22,14 +22,14 @@ export const userAuthentication = () => {
         if (error.message.includes("Password")) {
             return "A senha precisa conter pelo menos 6 caracteres."
         }
-        if (error.message.includes("email-already")) {
+        if (error.message.includes("email-already-in-use")) {
             return "Este e-mail ja está cadastrado."
         }
         return "Ocorreu um erro, tente novamente mais tarde"
     }
 
     async function createUser(data) {
-        const { email, password, displayName } = data
+        const { email, senha, displayName } = data
         checkIfCancelled()
 
         setLoading(true)
@@ -37,7 +37,7 @@ export const userAuthentication = () => {
 
         try {
             const { user } = await createUserWithEmailAndPassword(
-                auth, email, password)
+                auth, email, senha)
 
             await updateProfile(user, {
                 displayName: displayName
@@ -46,13 +46,10 @@ export const userAuthentication = () => {
 
             return user
         } catch (err) {
-            console.log(err.message)
-            console.log(typeof err.message)
-
-
+            console.log(`${typeof err}: ${err}`)
 
             setLoading(false)
-            setError(errorMessage(error))
+            setError(errorMessage(err))
         }
 
     }
